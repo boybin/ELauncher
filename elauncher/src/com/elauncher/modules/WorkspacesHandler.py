@@ -6,7 +6,7 @@ Created on Jul 1, 2013
 import shutil;
 import os
 
-class WorkspacesHandler():
+class WorkspacesHandler(object):
     
     def __init__(self, src, dest):
         self.fSrc = src;
