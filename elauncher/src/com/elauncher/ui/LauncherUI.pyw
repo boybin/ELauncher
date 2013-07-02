@@ -1,5 +1,6 @@
 
-from PyQt4 import QtGui
+from PyQt4 import QtGui, QtCore
+from com.elauncher.modules.Launcher import ELauncher
 
 
 class LauncherDialog(QtGui.QDialog):
@@ -14,8 +15,8 @@ class LauncherDialog(QtGui.QDialog):
 
         buttonBox = QtGui.QDialogButtonBox(QtGui.QDialogButtonBox.Ok | QtGui.QDialogButtonBox.Cancel)
 
-        buttonBox.accepted.connect(self.accept)
-        buttonBox.rejected.connect(self.reject)
+        buttonBox.accepted.connect(self.clickOk)
+        buttonBox.rejected.connect(self.clickCancel)
 
         mainLayout = QtGui.QVBoxLayout()
 #         mainLayout.setMenuBar(self.menuBar)
@@ -24,6 +25,8 @@ class LauncherDialog(QtGui.QDialog):
         self.setLayout(mainLayout)
 
         self.setWindowTitle("Launch Eclipse Based Application")
+        
+        self.connect(self.eclipseAppCmb, QtCore.SIGNAL('activated(QString)'), self.eclipseAppCmb_chosen)
         
     '''
     #TODO will consider on configuration with menu&dialog
@@ -66,7 +69,19 @@ class LauncherDialog(QtGui.QDialog):
         layout.addRow(QtGui.QLabel("WorkItem Number:"), self.workitemNumber)
         self.formGroupBox.setLayout(layout)
 
-
+    def eclipseAppCmb_chosen(self, text):
+        print(text)
+        
+    def clickOk(self):
+        print("accepted")
+        launcher = ELauncher("E:\\software\\development\\eclipse-album\\eclipse_42_RTC401\\eclipse\\eclipse-4.2.1-rtc-401.exe", "dd", "F:\\workspaces\\rbd-dev-java\\rbd-dev-90\\rbd-dev-90-interp-debug")
+        launcher.launch()
+        self.accept()
+        
+    def clickCancel(self):
+        print("cancel")
+        self.reject()    
+        
 if __name__ == '__main__':
 
     import sys
