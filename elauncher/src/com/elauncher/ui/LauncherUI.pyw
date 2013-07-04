@@ -62,7 +62,6 @@ class LauncherDialog(QtGui.QDialog):
         self.version.addItem("850")
         self.version.addItem("8511")
         
-        
         layout = QtGui.QFormLayout()
         layout.addRow(QtGui.QLabel("Eclipse Based Product:"), self.eclipseAppCmb)
         layout.addRow(QtGui.QLabel("Version Number:"), self.version)
@@ -74,7 +73,7 @@ class LauncherDialog(QtGui.QDialog):
         
     def clickOk(self):
         print("accepted")
-        launcher = ELauncher("E:\\software\\development\\eclipse-album\\eclipse_42_RTC401\\eclipse\\eclipse-4.2.1-rtc-401.exe", "dd", "F:\\workspaces\\rbd-dev-java\\rbd-dev-90\\rbd-dev-90-interp-debug")
+        launcher = ELauncher("E:\\software\\development\\eclipse-album\\eclipse_42_RTC401\\eclipse\\eclipse.exe", "dd", "F:\\workspaces\\rbd-dev-java\\rbd-dev-90\\rbd-dev-90-interp-debug")
         launcher.launch()
         self.accept()
         

@@ -5,6 +5,7 @@ Created on Jul 1, 2013
 '''
 from com.elauncher.modules.WorkspacesHandler import WorkspacesHandler
 import os
+import win32api
 
 class ELauncher(object):
     
@@ -19,4 +20,4 @@ class ELauncher(object):
             wsHandler.copyMetaWorkspace();
             
         if os.path.isdir(self.fDest):
-            os.system(self.fEclipseCmdPath + " -data " + self.fDest);
+            win32api.ShellExecute(0, 'open', self.fEclipseCmdPath, ' -data '+self.fDest, '', 0)
